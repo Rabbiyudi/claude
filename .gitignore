@@ -40,3 +40,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# scraper output (contains scraped data)
+scraper/output/*.json
+scraper/output/*.csv
+scraper/output/*.txt
+!scraper/output/.gitkeep

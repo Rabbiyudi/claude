@@ -6,14 +6,22 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "scrape": "npx tsx scraper/index.ts",
+    "scrape:all": "npx tsx scraper/index.ts --all",
+    "scrape:direct": "npx tsx scraper/index.ts --only-direct",
+    "scrape:fast": "npx tsx scraper/index.ts --skip-direct"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.72.1",
+    "axios": "^1.13.4",
+    "cheerio": "^1.2.0",
     "clsx": "^2.1.1",
+    "csv-stringify": "^6.6.0",
     "date-fns": "^4.1.0",
     "lucide-react": "^0.563.0",
     "next": "16.1.6",
+    "nodemailer": "^8.0.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "zustand": "^5.0.11"
@@ -21,11 +29,13 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/nodemailer": "^7.0.9",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }
