@@ -1,76 +1,100 @@
-// Rimon CRM Types
+// Chabad House Website Types
 
-export interface Contact {
-  id: string;
-  name: string;
-  email?: string;
-  phone?: string;
-  notes?: string;
-  createdAt: Date;
-  updatedAt: Date;
-  tags?: string[];
-}
-
-export interface Task {
+export interface ChabadEvent {
   id: string;
   title: string;
-  description?: string;
-  dueDate?: Date;
-  completed: boolean;
-  priority: 'low' | 'medium' | 'high';
-  contactId?: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-export interface Event {
-  id: string;
-  title: string;
-  description?: string;
-  date: Date;
-  endDate?: Date;
-  location?: string;
-  participants: string[];
+  description: string;
+  date: string; // ISO string
+  endDate?: string;
+  time: string;
+  location: string;
+  image?: string;
+  category: 'shabbat' | 'holiday' | 'class' | 'kids' | 'community' | 'other';
+  price?: number; // 0 = free
+  maxParticipants?: number;
+  currentParticipants: number;
+  registrations: EventRegistration[];
   hebrewDate?: string;
-  createdAt: Date;
-  updatedAt: Date;
+  isRecurring?: boolean;
+  createdAt: string;
 }
 
-export interface NewsItem {
+export interface EventRegistration {
   id: string;
-  message: string;
-  type: 'contact' | 'task' | 'event' | 'general';
-  timestamp: Date;
-  relatedId?: string;
-}
-
-export interface User {
-  id: string;
-  name: string;
+  eventId: string;
+  fullName: string;
   email: string;
-  organization?: string;
-  language: 'en' | 'he';
-  avatar?: string;
+  phone: string;
+  numberOfGuests: number;
+  notes?: string;
+  paymentStatus: 'pending' | 'completed' | 'free';
+  createdAt: string;
 }
 
-export interface Report {
+export interface GalleryAlbum {
   id: string;
-  content: string;
-  createdAt: Date;
-  type: 'voice' | 'text' | 'image';
-  processed: boolean;
-  extractedData?: {
-    contacts?: Partial<Contact>[];
-    tasks?: Partial<Task>[];
-    events?: Partial<Event>[];
-  };
+  title: string;
+  description?: string;
+  coverImage: string;
+  images: GalleryImage[];
+  date: string;
+  category: string;
+  createdAt: string;
 }
 
-export type IntentType = 'add_contact' | 'add_task' | 'add_event' | 'search' | 'update' | 'general';
+export interface GalleryImage {
+  id: string;
+  url: string;
+  thumbnail?: string;
+  caption?: string;
+  albumId: string;
+}
 
-export interface ParsedIntent {
-  type: IntentType;
-  confidence: number;
-  data: Record<string, unknown>;
-  originalText: string;
+export interface Donation {
+  id: string;
+  fullName: string;
+  email: string;
+  phone?: string;
+  amount: number;
+  currency: 'ILS' | 'USD' | 'EUR';
+  dedication?: string;
+  isRecurring: boolean;
+  recurringFrequency?: 'monthly' | 'yearly';
+  status: 'pending' | 'completed' | 'failed';
+  createdAt: string;
+}
+
+export interface ContactMessage {
+  id: string;
+  fullName: string;
+  email: string;
+  phone?: string;
+  subject: string;
+  message: string;
+  isRead: boolean;
+  createdAt: string;
+}
+
+export interface ShabbatTimes {
+  date: string;
+  parashat: string;
+  candleLighting: string;
+  havdalah: string;
+  city: string;
+}
+
+export interface SiteSettings {
+  chabadName: string;
+  chabadNameHe: string;
+  rabbiName: string;
+  address: string;
+  phone: string;
+  email: string;
+  whatsapp?: string;
+  facebook?: string;
+  instagram?: string;
+  heroImage?: string;
+  aboutText: string;
+  aboutImage?: string;
+  city: string;
 }

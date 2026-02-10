@@ -1,25 +1,19 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
-  title: 'Rimon CRM - Smart Conversation-Based CRM',
-  description: 'Rimon is a next-generation CRM platform for managing contacts, tasks, and events through natural conversation, voice recordings, and intelligent analysis.',
-  keywords: ['CRM', 'voice', 'AI', 'contacts', 'tasks', 'events', 'Hebrew', 'conversation'],
-  authors: [{ name: 'Rimon Team' }],
-  manifest: '/manifest.json',
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: 'default',
-    title: 'Rimon CRM',
-  },
+  title: 'בית חב"ד - הבית שלכם',
+  description: 'בית חב"ד - אירועים, שיעורי תורה, ארוחות שבת, חוגי ילדים ועוד. הצטרפו למשפחה שלנו!',
+  keywords: ['חב"ד', 'בית חב"ד', 'יהדות', 'שבת', 'תורה', 'אירועים', 'קהילה'],
+  authors: [{ name: 'בית חב"ד' }],
 };
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
-  themeColor: '#FFD700',
+  themeColor: '#1B3A5C',
 };
 
 export default function RootLayout({
@@ -28,15 +22,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="he" dir="rtl" suppressHydrationWarning>
       <head>
         <link
-          href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="antialiased bg-gray-50">
-        {children}
+      <body className="antialiased">
+        <Navbar />
+        <main className="min-h-screen">{children}</main>
+        <Footer />
       </body>
     </html>
   );
